@@ -14,15 +14,16 @@ struct Data {
     data: Vec<PreparedData>
 }
 
+// TODO: impl FromStr for PreparedData
+
 impl From<Vec<String>> for Data {
     fn from(lines: Vec<String>) -> Self {
-        // TODO: implement
-        drop(lines);
         Data {
-            data: vec![]
+            data: lines.iter().filter_map(|s| s.parse().ok()).collect::<Vec<PreparedData>>()
         }
     }
 }
+
 
 impl Data {
     fn calculate1(&mut self) -> CalculationResult {
